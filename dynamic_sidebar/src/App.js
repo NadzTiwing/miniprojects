@@ -69,11 +69,11 @@ function App() {
         id="settings"
         title={<BsFillGearFill />}
       >
-        <Dropdown.Item eventKey="1" onClick={() => editMenu(id)}>
+        <Dropdown.Item eventKey={"edit-" + id} onClick={() => editMenu(id)}>
           Edit
         </Dropdown.Item>
         <Dropdown.Item
-          eventKey="2"
+          eventKey={"edit-" + id}
           className="text-danger"
           onClick={() => deleteMenu(id)}
         >
@@ -97,7 +97,7 @@ function App() {
                 <Nav.Link eventKey={"content-" + item.id}>
                   {item.title}
                 </Nav.Link>
-                {index > 0 ? menuTools(item.id) : ""}
+                {menuTools(item.id)}
               </Nav.Item>
             ))}
             <Nav.Item key="add-item">
