@@ -34,8 +34,8 @@ function ImageDetector() {
   const [objHeight, setObjHeight] = useState(0);
   const [selectedItem, setSelectedItem] = useState("");
 
+  const image = document.querySelector("#image");
   useEffect(() => {
-    const image = document.querySelector("#image");
     if (image) {
       let linkSrc = image.src;
       const imageCopy = document.createElement("img");
@@ -43,7 +43,7 @@ function ImageDetector() {
       setWidth(imageCopy.width);
       setHeight(imageCopy.height);
     }
-  }, [width, height]);
+  }, [width, height, image]);
 
   const handleClick = (object) => {
     objects.map((item) => {
@@ -54,6 +54,7 @@ function ImageDetector() {
         setObjHeight(item.h);
         setSelectedItem(object.toUpperCase());
       }
+      return item;
     });
   };
 
@@ -76,11 +77,11 @@ function ImageDetector() {
             ))}
           </div>
           <div className="col-8">
-            <div style={{ position: "relative" }}>
+            <div className="img-container">
               <img
                 id="image"
-                src={`/img/foods.jpg`}
-                alt="food-image"
+                src="/img/foods.jpg"
+                alt="food"
                 className="w-100"
               />
               <svg
@@ -110,39 +111,6 @@ function ImageDetector() {
           </div>
         </div>
       </div>
-      <style jsx>
-        {`
-          .image-map {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            -o-user-select: none;
-            user-select: none;
-          }
-
-          .selected-object {
-            position: absolute;
-            top: 0;
-            left: 0;
-            fill: transparent;
-            stroke: #ff9e0d;
-            stroke-width: 5px;
-          }
-
-          .wrap-text {
-            fill: #ff9e0d;
-          }
-
-          .object-name {
-            z-index: 999;
-          }
-        `}
-      </style>
     </div>
   );
 }
